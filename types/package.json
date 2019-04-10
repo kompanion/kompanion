@@ -1,0 +1,15 @@
+{
+  "name": "@kompanion/types",
+  "version": "0.0.0",
+  "license": "Apache-2.0",
+  "main": "index.ts",
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "devDependencies": {
+    "typescript": "^3.2.4"
+  }
+}

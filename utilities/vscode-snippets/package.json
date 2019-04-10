@@ -1,0 +1,39 @@
+{
+  "name": "@kompanion/vscode-snippets",
+  "version": "0.0.1",
+  "description": "**Note:** To use this, you need [VS Code](https://code.visualstudio.com/).",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["snippets", "VS Code", "kompanion"],
+  "author": {
+    "name": "Henrique Cavalieri",
+    "email": "henrique@kaordica.design",
+    "url": "https://kaordica.design"
+  },
+  "engines": {
+    "vscode": "^1.30.0"
+  },
+  "license": "MIT",
+  "categories": ["Snippets"],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./javascript.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./javascriptreact.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./typescript.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./typescriptreact.json"
+      }
+    ]
+  }
+}

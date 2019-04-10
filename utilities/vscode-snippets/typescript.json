@@ -1,0 +1,29 @@
+{
+	"Basic Type": {
+		"description": "Basic TS Type",
+		"prefix": "tsType",
+		"body": [
+			"export type T${1:type} = ${2:any}"
+		]
+	},
+	"Basic Interface": {
+		"description": "Basic TS Interface",
+		"prefix": "tsInt",
+		"body": [
+			"export interface I${1:interface} {",
+				"\t${2:property}: ${3:any};",
+			"}"
+		]
+	},
+	"Logger": {
+		"description": "Console log with separators",
+		"prefix": "logg",
+		"body": [
+			"console.log('============================')",
+			"console.log('============================')",
+			"console.log(${1:log})",
+			"console.log('============================')",
+			"console.log('============================')",
+		]
+	}
+}

@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "eg2.tslint",
+    "chenxsan.vscode-standardjs",
+    "esbenp.prettier-vscode"
+  ]
+}

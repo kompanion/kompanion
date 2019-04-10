@@ -1,0 +1,7 @@
+# kompanion
+
+## Local environment
+
+```
+yarn
+```

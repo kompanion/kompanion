@@ -1,0 +1,15 @@
+{
+  "packages": [
+    "utilities/*",
+    "themes/*",
+    "types"
+  ],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "create": {
+      "license": "Apache-2.0"
+    }
+  }
+}

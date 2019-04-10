@@ -1,0 +1,42 @@
+{
+  "name": "gatsby-theme-koncrete",
+  "version": "0.0.0",
+  "main": "gatsby-config.js",
+  "author": {
+    "name": "Henrique Cavalieri",
+    "email": "henrique@kaordica.design",
+    "url": "https://kaordica.design"
+  },
+  "license": "Apache-2.0",
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "keywords": [
+    "gatsby",
+    "gatsby-theme",
+    "gatsby-themes",
+    "typescript"
+  ],
+  "dependencies": {
+    "@babel/plugin-transform-typescript": "^7.1.0",
+    "@kompanion/utils": "*",
+    "@types/react-helmet": "^5.0.8",
+    "gatsby-plugin-react-helmet": "^3.0.7",
+    "gatsby-plugin-sharp": "^2.0.28",
+    "gatsby-plugin-sitemap": "^2.0.9",
+    "gatsby-plugin-typescript": "^2.0.9",
+    "gatsby-transformer-sharp": "^2.1.17",
+    "gatsby-plugin-netlify": "^2.0.11",
+    "react-helmet": "^5.2.0",
+    "typescript": "^3.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4"
+  },
+  "peerDependencies": {
+    "gatsby": "^2.3.0"
+  }
+}

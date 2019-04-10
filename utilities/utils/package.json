@@ -1,0 +1,37 @@
+{
+  "name": "@kompanion/utils",
+  "version": "0.0.0",
+  "main": "lib/index.js",
+  "scripts": {
+    "format": "prettier --write src/**/*.{ts,tsx,js,jsx}",
+    "lint": "tslint --fix src/**/*.{ts,tsx}",
+    "build": "rimraf ./lib && tsc",
+    "prepare": "yarn format && yarn lint && yarn build",
+    "deploy": "npm publish --access public"
+  },
+  "keywords": [
+    "utilities",
+    "string-utils",
+    "array-utils",
+    "react",
+    "react-utils"
+  ],
+  "author": {
+    "name": "Henrique Cavalieri",
+    "email": "henrique@kaordica.design",
+    "url": "https://kaordica.design"
+  },
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-transform-typescript": "^7.1.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.4"
+  }
+}
