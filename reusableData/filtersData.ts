@@ -1,4 +1,4 @@
-import { TSkillLevels, TTopics, TFormats } from '@kompanion/types'
+import { TFormats, TSkillLevels, TTopics } from '@kompanion/types'
 
 export const contentTopics: TTopics[] = [
   'CMS',
@@ -11,7 +11,8 @@ export const contentTopics: TTopics[] = [
   'React',
   'PWA',
   'DevOps',
-  'Design'
+  'Design',
+  'HTML'
 ]
 
 export const contentLevels: TSkillLevels[] = [

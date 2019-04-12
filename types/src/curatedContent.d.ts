@@ -16,6 +16,7 @@ export type TTopics =
   | 'PWA'
   | 'DevOps'
   | 'Design'
+  | 'HTML'
 
 export type TFormats =
   | 'video'

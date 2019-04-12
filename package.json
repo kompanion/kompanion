@@ -33,6 +33,7 @@
   ],
   "scripts": {
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "build:www": "yarn workspace @kompanion/www gatsby build"
   }
 }

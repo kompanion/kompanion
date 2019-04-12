@@ -12,7 +12,8 @@
 - Header
 - **more** (_and more relavant_) **content**
 - modal with more recommendations
-- Newsletter
+- Newsletter 
+- Room for feedback
 
 ### Nice to have
 
@@ -23,3 +24,4 @@
 - Tooltips for the format in the content card
 - masonry layout for the content
 - filter for the topic when clicking on its tag inside a content card
+- 404
