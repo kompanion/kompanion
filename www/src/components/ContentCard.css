@@ -1,15 +1,13 @@
-body {
-  background: #F8F9FA;
-}
-
 .content__card {
   background: white;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1), 0px 10px 20px rgba(0, 0, 0, 0.15);
-  border-radius: 20px;
+  box-shadow: var(--shadow3);
+  border-radius: calc(var(--multiplier) * 10);
   align-self: flex-start;
+  font-size: calc(var(--multiplier) * 7);
 }
+
 .content__container {
-padding: 20px 32px;
+  padding: 20px 32px;
 }
 
 .content__wrapper {

@@ -4,7 +4,7 @@ export type TSkillLevels =
   | 'advanced'
   | 'allLevels'
 
-export type TCategories =
+export type TTopics =
   | 'CMS'
   | 'GraphQL'
   | 'Business'
@@ -29,7 +29,7 @@ export type TFormats =
 export interface ICuratedContent {
   title: string
   url: string
-  category: TCategories
+  topic: TTopics
   format: TFormats
   skillLevel?: TSkillLevels // who is it for?
 }

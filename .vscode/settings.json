@@ -14,5 +14,9 @@
     "typescriptreact"
   ],
   "standard.usePackageJson": true,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "files.associations": {
+    "*.css": "postcss",
+    "*.stylelintrc": "json"
+  }
 }

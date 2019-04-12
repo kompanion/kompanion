@@ -1,4 +1,4 @@
-export const contentCategories = [
+export const contentTopics = [
   'CMS',
   'GraphQL',
   'Business',

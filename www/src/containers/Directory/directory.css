@@ -1,0 +1,29 @@
+@media (--largeUp) {
+  .directory__wrapper {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .directory__wrapper > * {
+    overflow: auto;
+    height: 100%;
+  }
+  .directory__main {
+    flex: 1;
+    margin-left: calc(var(--multiplier) * 12);
+  }
+  
+  .directory__sidebar {
+    flex: 0 1 250px;
+    background: white;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
+    padding: calc(var(--multiplier) * 8) calc(var(--multiplier) * 12);
+  }
+
+  .directory__sidebar h2 {
+    font-size: calc(var(--multiplier) * 8);
+    color: var(--greyD2);
+  }
+}
+

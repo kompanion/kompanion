@@ -1,32 +1,36 @@
+import { IContentCard } from '@kompanion/types'
+import { graphql } from 'gatsby'
 import * as React from 'react'
 import Helmet from 'react-helmet'
-import { graphql } from 'gatsby'
-import ContentCard, { IContentCardProps } from '../components/ContentCard'
+
+import Directory from '../containers/Directory/Directory'
 
 export interface IIndexPageProps {
   data: {
     content: {
       edges: Array<{
-        node: IContentCardProps
+        node: IContentCard
       }>
     }
   }
 }
 
 export const IndexPage: React.SFC<IIndexPageProps> = ({ data }) => {
-  console.log(data)
   return (
-    <div>
+    <>
       <Helmet>
-        <title>Home</title>
+        <title>
+          Kompanion kommunity - learning Gatsby can be fun and effective
+        </title>
       </Helmet>
-      <h1>kompanion kommunity</h1>
-      <section className="content__wrapper">
-        {data.content.edges.map(({ node }) => (
-          <ContentCard key={node.url} {...node} />
-        ))}
-      </section>
-    </div>
+      <Directory content={data.content.edges}>
+        <h1>kommunity</h1>
+        <p>
+          Learning Gatsby can be fun and effective. Count on valuable,
+          community-curated content as your kompanion.
+        </p>
+      </Directory>
+    </>
   )
 }
 
@@ -40,8 +44,8 @@ export const pageQuery = graphql`
       edges {
         node {
           title
-          category
-          skillLevel: expertiseLevel
+          topic
+          skillLevel
           format
           url
           recommendations {

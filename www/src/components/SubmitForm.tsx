@@ -1,19 +1,18 @@
-import { TCategories, TFormats, TSkillLevels } from '@kompanion/types'
-import {
-  contentCategories,
-  contentFormats,
-  contentLevels
-} from '@kompanion/types/data'
+import { TFormats, TSkillLevels, TTopics } from '@kompanion/types'
 import * as React from 'react'
-import { FormState, useFormState } from 'react-use-form-state'
-
+import { useFormState } from 'react-use-form-state'
+import {
+  contentFormats,
+  contentLevels,
+  contentTopics
+} from '../../../reusableData'
 const TITLE_MAX_LENGTH = 65
 
 interface IFormFields {
   url: string
   user: string
   comment: string
-  category?: TCategories
+  topic?: TTopics
   format?: TFormats
   skillLevel?: TSkillLevels
 }
@@ -42,6 +41,7 @@ export const SubmitForm: React.SFC<{}> = () => {
     const finalState = {
       ...formState,
       title,
+      lastUpdated: new Date().toISOString().split('T')[0],
       recommendations: [
         {
           user,
@@ -172,11 +172,11 @@ export const SubmitForm: React.SFC<{}> = () => {
                 ))}
               </fieldset>
               <fieldset>
-                <h2>What category does it fit in?</h2>
-                {contentCategories.map(c => (
+                <h2>Which topic does it fit in?</h2>
+                {contentTopics.map(c => (
                   <div key={c}>
-                    <label {...label('category', c)}>{c}</label>
-                    <input {...radio('category', c)} />
+                    <label {...label('topic', c)}>{c}</label>
+                    <input {...radio('topic', c)} />
                   </div>
                 ))}
               </fieldset>

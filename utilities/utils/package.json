@@ -1,6 +1,6 @@
 {
   "name": "@kompanion/utils",
-  "version": "0.0.0",
+  "version": "0.0.4",
   "main": "lib/index.js",
   "scripts": {
     "format": "prettier --write src/**/*.{ts,tsx,js,jsx}",

@@ -16,7 +16,23 @@ module.exports = {
     {
       resolve: `gatsby-plugin-postcss`,
       options: {
-        postCssPlugins: [require(`postcss-preset-env`)({ stage: 0 })]
+        postCssPlugins: [
+          require(`postcss-preset-env`)({ stage: 0 }),
+          require('postcss-bem-linter')(),
+          require('stylelint')(),
+          require('cssnano')()
+        ]
+      }
+    },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Merriweather`,
+            variants: [`900`]
+          }
+        ]
       }
     },
     {

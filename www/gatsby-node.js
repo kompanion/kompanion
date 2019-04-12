@@ -34,6 +34,8 @@ exports.onCreateNode = async ({ node, actions }) => {
       }
 
       const content = JSON.parse(object.text)
+      // TODO: better type checking for the content object
+      // category, format and skillLevel are all necessary
       if (
         !content ||
         typeof content.title !== 'string' ||

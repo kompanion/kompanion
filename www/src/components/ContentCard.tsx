@@ -1,93 +1,63 @@
+import { IContentCard } from '@kompanion/types'
 import * as React from 'react'
-import './index.css'
+import './ContentCard.css'
+import { textToParagraphs } from '../../../utilities/utils/lib'
+import { formatIcons } from './formatIcons'
 
-export type TSkillLevels =
-  | 'beginner'
-  | 'intermediate'
-  | 'advanced'
-  | 'allLevels'
-export type TCategories =
-  | 'CMS'
-  | 'GraphQL'
-  | 'Business'
-  | 'Themes'
-  | 'Workflow'
-  | 'CSS'
-  | 'SEO'
-  | 'React'
-  | 'PWA'
-  | 'DevOps'
-  | 'Design'
-export type TFormats =
-  | 'video'
-  | 'article'
-  | 'audio'
-  | 'tutorial'
-  | 'course'
-  | 'book'
-  | 'tool'
-
-export interface IUser {
-  handle: string
-  fields: {
-    avatarUrl?: string
-    name: string
-  }
-}
-
-export interface IRecommendation {
-  comment: string // why is it important - max. 140char
-  user: IUser // the handle of the user in GitHub
-}
-
-export interface IContentCardProps {
-  title: string
-  url: string
-  recommendations: IRecommendation[]
-  category: TCategories
-  skillLevel?: TSkillLevels // who is it for?
-  format?: TFormats
-}
-
-export const ContentCard: React.SFC<IContentCardProps> = ({
+export const ContentCard: React.SFC<IContentCard> = ({
   title,
   recommendations,
-  category,
+  topic,
   url,
   format,
   skillLevel
 }) => {
   const { length } = recommendations
   const collaborator = recommendations[0]
+  const {
+    handle,
+    fields: { name, avatarUrl }
+  } = collaborator.user
   return (
-    <div className="content__card">
-      <div className="content__container">
-        <span className="content__title">
-          Recommended by
-          {length === 1
-            ? recommendations[0].user.fields.name
-            : `${length} people`}
-        </span>
-        <span className="content__category">{category}</span>
+    <article className="content__card">
+      <header>
+        <section className="content__meta">
+          <span className="content__topic">{topic}</span>
+          <span className="content__skillLevel">{skillLevel}</span>
+        </section>
         <h2 className="content__title">{title}</h2>
         {/* TODO: Regex */}
-        <span className="content__domain">{url.replace('https://', '')}</span>
-        <p className="content__comment">{collaborator.comment}</p>
-        <p className="text_right content__author">
+        <span className="content__domain">
+          {formatIcons[format]({ fill: 'var(--grey)' })}{' '}
+          {url.replace('https://', '')}
+        </span>
+      </header>
+      <main>{textToParagraphs(collaborator.comment)}</main>
+      <address>
+        <a
+          className="content__author"
+          href={`https://github.com/${handle}`}
+          target="_blank"
+        >
           <img
-            src={collaborator.user.fields.avatarUrl}
-            alt=""
+            src={avatarUrl}
+            alt={`Profile picture from ${name}`}
             className="content__photo"
           />
-          {collaborator.user.fields.name}
-        </p>
-        }
-        <div className="content__footer">
-          <span>{format}</span>
-          <span>{skillLevel}</span>
-        </div>
-      </div>
-    </div>
+          {name}
+        </a>
+      </address>
+      {length > 1 && (
+        <footer>
+          <span className="content__recommended-by">
+            Recommended by
+            {length === 1
+              ? recommendations[0].user.fields.name
+              : `${length} people`}
+          </span>
+        </footer>
+      )}
+    </article>
   )
 }
 

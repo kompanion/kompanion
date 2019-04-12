@@ -1,11 +1,10 @@
+import { ISubmissionPayload, TSubmissionFormatErrors } from '@kompanion/types'
+import { isUrl } from '@kompanion/utils'
 import {
-  contentCategories,
   contentFormats,
   contentLevels,
-  ISubmissionPayload,
-  TSubmissionFormatErrors
-} from '@kompanion/types'
-import { isUrl } from '@kompanion/utils'
+  contentTopics
+} from '../../reusableData'
 
 interface IValidateSubmitReturn {
   error?: TSubmissionFormatErrors
@@ -27,11 +26,14 @@ export const validateSubmit = (
   if (typeof payload.title !== 'string') {
     return { error: 'No title given' }
   }
+  if (typeof payload.lastUpdated !== 'string') {
+    return { error: 'Missing lastUpdated' }
+  }
   if (
-    typeof payload.category !== 'string' ||
-    contentCategories.indexOf(payload.category) < 0
+    typeof payload.topic !== 'string' ||
+    contentTopics.indexOf(payload.topic) < 0
   ) {
-    return { error: 'No valid category given' }
+    return { error: 'No valid topic given' }
   }
   if (
     typeof payload.format !== 'string' ||

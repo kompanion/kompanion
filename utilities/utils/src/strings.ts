@@ -75,5 +75,29 @@ export const italicizeString = (str: string) => {
   )
 }
 
-export const isUrl = (str: string) =>
-  Array.isArray(str.match(/[(http)(https)]:\/\/.*(\.\w*).*/gi))
+export const isUrl = (str: string, canLog: boolean = false) => {
+  try {
+    const url = new URL(str)
+    if (url && url.hostname) {
+      return true
+    }
+    return false
+  } catch (error) {
+    if (canLog) {
+      console.error(`${str} is not an URL`)
+    }
+    return false
+  }
+}
+
+export const extractDomain = (str: string, canLog: boolean = false) => {
+  try {
+    const url = new URL(str)
+    return url.hostname
+  } catch (error) {
+    if (canLog) {
+      console.error(`${str} is not an URL`)
+    }
+    return str
+  }
+}
