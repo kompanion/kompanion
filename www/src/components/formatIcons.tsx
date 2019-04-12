@@ -1,9 +1,5 @@
 import * as React from 'react'
-// import { TFormats } from '@kompanion/types'
-
-interface IIconProps {
-  fill?: string
-}
+import { IIconProps } from './generalIcons'
 
 export const ToolIcon: React.SFC<IIconProps> = ({ fill = 'currentColor' }) => {
   return (

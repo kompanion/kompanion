@@ -1,6 +1,7 @@
-import React from 'react'
-import KommunityLayout from './src/layouts/KommunityLayout'
-
-export const wrapPageElement = ({ element, props }) => (
-  <KommunityLayout {...props}>{element}</KommunityLayout>
-)
+import './src/globalStyles/colors.css'
+import './src/globalStyles/common.css'
+import './src/globalStyles/helpers.css'
+import './src/globalStyles/media.css'
+import './src/globalStyles/shadows.css'
+import './src/globalStyles/transitions.css'
+import './src/globalStyles/typography.css'

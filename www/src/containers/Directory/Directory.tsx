@@ -13,6 +13,8 @@ import { formatIcons } from '../../components/formatIcons'
 
 import '../../components/styles/pill-checkbox.css'
 import './directory.css'
+import { SkillLevelIndicator } from '../../components/levelIcons'
+import LevelCheckbox from '../../components/LevelCheckbox'
 
 export interface IDirectoryProps {
   content: Array<{
@@ -103,7 +105,7 @@ export const Directory: React.SFC<IDirectoryProps> = ({
               <div className="pill-checkbox pill-checkbox_has-icon" key={f}>
                 <input {...checkbox('formats', f)} />
                 <label {...label('formats', f)}>
-                  {capitalizeFirstLetter(f)} {formatIcons[f]()}
+                  {capitalizeFirstLetter(f)} {formatIcons[f]({})}
                 </label>
               </div>
             ))}
@@ -114,10 +116,12 @@ export const Directory: React.SFC<IDirectoryProps> = ({
           {contentLevels
             .filter(l => l !== 'allLevels')
             .map(l => (
-              <div key={l}>
-                <label {...label('skillLevels', l)}>{l}</label>
-                <input {...checkbox('skillLevels', l)} />
-              </div>
+              <LevelCheckbox
+                key={l}
+                level={l}
+                label={label}
+                checkbox={checkbox}
+              />
             ))}
         </fieldset>
       </aside>

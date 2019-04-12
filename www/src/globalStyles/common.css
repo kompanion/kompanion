@@ -19,3 +19,7 @@ button {
 body {
   margin: 0;
 }
+
+p {
+  max-width: 30rem;
+}

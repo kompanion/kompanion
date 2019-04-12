@@ -4,10 +4,6 @@
   position: relative;
   margin: .35em .25em;
   font-size: calc(var(--multiplier) * 7);
-  &__wrapper {
-    font-size: calc(var(--multiplier) * 7);
-    margin: 1em -.35em 2em;
-  }
   & > label {
     border: .1em solid var(--purpleL1);
     border-radius: 10em;
@@ -39,6 +35,11 @@
     vertical-align: middle;
     margin-left: .25em;
   }
+}
+
+.pill-checkbox__wrapper {
+  font-size: calc(var(--multiplier) * 7);
+  margin: .5em -.35em 2em;
 }
 
 @media (hover) {

@@ -7,17 +7,4 @@ export {
   getTwitterShareUrl
 } from './socialSharing'
 export { getWindowSize, scrollToId } from './dom'
-export {
-  boldString,
-  italicizeString,
-  slugifyString,
-  removeWhitespace,
-  removeSpecialCharacters,
-  lowercaseFirstLetter,
-  keyFromString,
-  getRandomNumber,
-  getProperSlug,
-  checkIfAbsUrl,
-  capitalizeFirstLetter,
-  isUrl
-} from './strings'
+export * from './strings'

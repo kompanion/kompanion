@@ -4,6 +4,7 @@ import * as React from 'react'
 import Helmet from 'react-helmet'
 
 import Directory from '../containers/Directory/Directory'
+import { textToParagraphs } from '../../../utilities/utils/lib'
 
 export interface IIndexPageProps {
   data: {
@@ -15,6 +16,8 @@ export interface IIndexPageProps {
   }
 }
 
+const firstParagraph = `Learning Gatsby and React can be fun and more collaborative. Count on valuable, community-curated content as your kompanion.\n__Why count on old fashioned link aggregators when you have recommendations by your fellow developers?__ 😉`
+
 export const IndexPage: React.SFC<IIndexPageProps> = ({ data }) => {
   return (
     <>
@@ -25,10 +28,7 @@ export const IndexPage: React.SFC<IIndexPageProps> = ({ data }) => {
       </Helmet>
       <Directory content={data.content.edges}>
         <h1>kommunity</h1>
-        <p>
-          Learning Gatsby can be fun and effective. Count on valuable,
-          community-curated content as your kompanion.
-        </p>
+        {textToParagraphs(firstParagraph)}
       </Directory>
     </>
   )
