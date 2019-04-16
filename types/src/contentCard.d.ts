@@ -3,7 +3,7 @@ import { ICuratedContent } from './curatedContent'
 export interface IUser {
   handle: string
   fields: {
-    avatarUrl?: string
+    avatar32?: string
     name: string
   }
 }

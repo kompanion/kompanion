@@ -4,7 +4,6 @@ import { graphql } from 'gatsby'
 import * as React from 'react'
 import Helmet from 'react-helmet'
 
-import { Favicon } from '../components/Favicon'
 import Header from '../components/Header'
 import Directory from '../containers/Directory/Directory'
 
@@ -54,7 +53,7 @@ export const pageQuery = graphql`
             user {
               handle
               fields {
-                avatarUrl
+                avatar32
                 name
               }
             }

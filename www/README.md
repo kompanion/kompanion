@@ -5,26 +5,28 @@
 ### Must have
 
 - mobile
-- Contributing page
 - Form submission
-  - The Lambda function for automatic submission is almost there...
-  - But it's still very prone to bugs, so in the meantime, just render a `<pre>` with the JSON file that people need to add in GH, and direct them to the [corresponding link](https://github.com/kompanion/kommunity-content/new/master/content)
+  - refine styling
   - Submission go back
-- Header
 - **more** (_and more relavant_) **content**
-- modal with more recommendations
 - Newsletter 
-- Room for feedback
+- 404
+- "via twitter" in ContentCard for influencers
 
 ### Nice to have
 
+- modal with other recommendations
+- Room for feedback
 - about page
-- user pages
-- better space content cards
 - Tooltips for skill levels
 - Tooltips for the format in the content card
 - masonry layout for the content
 - filter for the topic when clicking on its tag inside a content card
-- 404
 - Accesible sidebars
-- better structuring of CSS
+
+### Needs re-structuring
+
+- Consider CSS modules for certain parts of the app
+- Reinforce a consistent name for collaborator / contributor / user
+- Reinforce a consistent name for collaborator / contributor / user
+- Put kommunity in its own repository

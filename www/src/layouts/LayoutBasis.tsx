@@ -74,6 +74,8 @@ export const LayoutBasis: React.SFC<{}> = ({ children }) => {
 
   const closeAllSidebars = () => {
     setNavState({ ...navState, filterOpen: false, menuOpen: false })
+    toggleHtmlPadding(false, 'right')
+    toggleHtmlPadding(false, 'left')
   }
 
   const navContext: INavContext = {

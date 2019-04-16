@@ -21,7 +21,7 @@ export const ContentCard: React.SFC<IContentCard> = ({
   const collaborator = recommendations[0]
   const {
     handle,
-    fields: { name, avatarUrl }
+    fields: { name, avatar32: avatarUrl }
   } = collaborator.user
   return (
     <article className="content__card">

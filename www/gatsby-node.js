@@ -1,3 +1,4 @@
+const path = require('path')
 const axios = require('axios')
 const crypto = require('crypto')
 
@@ -5,7 +6,44 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`
 })
 
-exports.onCreateNode = async ({ node, actions }) => {
+exports.createPages = async ({ actions: { createPage }, graphql }) => {
+  try {
+    const { data: collabData } = await graphql(`
+      {
+        contributors: allKommunityContributor {
+          edges {
+            node {
+              id
+              handle
+            }
+          }
+        }
+      }
+    `)
+    if (
+      !collabData ||
+      !collabData.contributors ||
+      !Array.isArray(collabData.contributors.edges)
+    ) {
+      console.info("Couldn't get contributors in createPages")
+      return
+    }
+    for (const { node } of collabData.contributors.edges) {
+      createPage({
+        path: `/contributors/${node.handle}`,
+        component: path.resolve('./src/templates/ContributorTemplate.tsx'),
+        context: {
+          id: node.id
+        }
+      })
+    }
+  } catch (error) {
+    console.info(`Couldn't get all contributors`)
+    console.error(error)
+  }
+}
+
+exports.onCreateNode = async ({ node, actions, getNodes, ...rest }) => {
   const { createNode, createNodeField } = actions
   const {
     internal: { type },
@@ -14,6 +52,7 @@ exports.onCreateNode = async ({ node, actions }) => {
     handle
   } = node
 
+  // Parsing the Github repository and creating nodes for suggestions and contributors
   if (
     type === 'GithubRepository' &&
     name === 'kommunity-content' &&
@@ -45,20 +84,20 @@ exports.onCreateNode = async ({ node, actions }) => {
         continue
       }
 
-      const collaborators = content.recommendations.map(r => r.user)
+      const contributors = content.recommendations.map(r => r.user)
 
-      for (const c of collaborators) {
+      for (const c of contributors) {
         if (typeof c !== 'string') {
           continue
         }
 
         createNode({
-          id: `kommCollaborator-${c}`,
+          id: `kommContributor-${c}`,
           handle: c,
           parent: null,
           children: [],
           internal: {
-            type: 'KommunityCollaborator',
+            type: 'KommunityContributor',
             contentDigest: crypto
               .createHash(`md5`)
               .update(c)
@@ -67,16 +106,17 @@ exports.onCreateNode = async ({ node, actions }) => {
         })
       }
 
+      const contributorsNodes = contributors.map(c => `kommContributor-${c}`)
+
       createNode({
         id: name,
-        collaborators___NODE: collaborators.map(c => `kommCollaborator-${c}`),
+        contributors___NODE: contributorsNodes,
         ...content,
         recommendations: content.recommendations.map(({ comment, user }) => ({
-          user___NODE: `kommCollaborator-${user}`,
+          user___NODE: `kommContributor-${user}`,
           comment
         })),
         parent: null,
-        children: [],
         internal: {
           mediaType: 'application/json',
           type: 'KommunityContent',
@@ -90,39 +130,84 @@ exports.onCreateNode = async ({ node, actions }) => {
       })
     }
     console.timeEnd('\n====================\nCreating nodes')
-  } else if (type === 'KommunityCollaborator') {
-    console.time('\n===============\nFetching collaborators')
+  } else if (type === 'KommunityContributor') {
+    // console.log(Object.keys(rest), rest.getNode)
+    console.time(`\n===============\nFetching ${handle}`)
     const query = `
       query {
         user(login: "${handle}") {
-          avatarUrl(size: 64)
+          avatar32: avatarUrl(size: 32)
+          avatar240: avatarUrl(size: 240)
           name
+          bio
         }
       }
     `
-    const res = await axios.post(
-      'https://api.github.com/graphql',
-      { query },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.GH_ACCESS_TOKEN}`
+
+    // Get the contributor's name and image from GitHub
+    try {
+      const ghRes = await axios.post(
+        'https://api.github.com/graphql',
+        { query },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.GH_ACCESS_TOKEN}`
+          }
         }
+      )
+      const { data } = ghRes
+      if (data.data && data.data.user) {
+        const { avatar32, avatar240, name, bio } = data.data.user
+        createNodeField({
+          node,
+          name: 'avatar32',
+          value: avatar32
+        })
+        createNodeField({
+          node,
+          name: 'avatar240',
+          value: avatar240
+        })
+        createNodeField({
+          node,
+          name: 'name',
+          value: name
+        })
+        createNodeField({
+          node,
+          name: 'bio',
+          value: bio
+        })
       }
-    )
-    const { data } = res
-    if (data.data && data.data.user) {
-      const { avatarUrl, name } = data.data.user
-      createNodeField({
-        node,
-        name: 'avatarUrl',
-        value: avatarUrl
-      })
-      createNodeField({
-        node,
-        name: 'name',
-        value: name
-      })
+    } catch (error) {
+      console.info(`Couldn't fetch @${handle}'s GH profile`)
+      console.error(error)
     }
-    console.timeEnd('\n===============\nFetching collaborators')
+
+    // Add all the suggestions submitted by the user to their node
+    try {
+      const allNodes = await getNodes()
+      const suggestionsIds = allNodes
+        .filter(
+          ({ internal, contributors___NODE }) =>
+            internal.type === 'KommunityContent' &&
+            contributors___NODE.indexOf(node.id) >= 0
+        )
+        .map(({ id }) => id)
+      createNodeField({
+        node,
+        name: 'suggestions___NODE',
+        value: suggestionsIds
+      })
+      createNodeField({
+        node,
+        name: 'suggestionsCount',
+        value: suggestionsIds.length
+      })
+    } catch (error) {
+      console.info(`Couldn't get @${handle}'s suggestions`)
+      console.error(error)
+    }
+    console.timeEnd(`\n===============\nFetching ${handle}`)
   }
 }
