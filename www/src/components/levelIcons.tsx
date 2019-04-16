@@ -15,25 +15,25 @@ export const WinkEmoji = () => (
   </svg>
 )
 
-export const LevelIcon: React.SFC<{}> = () => (
+export const LevelIcon: React.SFC<{ level: TSkillLevels }> = ({ level }) => (
   <svg
     viewBox="0 0 100 100"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     style={{ maxWidth: '65%' }}
   >
-    <g
-      clip-path="url(#level-icon__clip)"
-      fill-rule="evenodd"
-      clip-rule="evenodd"
-    >
-      <path
-        d="M50 29.0324c6.2355 0 11.2904 5.0549 11.2904 11.2904v48.3874c0 6.2355-5.0549 11.2908-11.2904 11.2908s-11.2904-5.0553-11.2904-11.2908V40.3228c0-6.2355 5.0549-11.2904 11.2904-11.2904zM88.7096 0C94.9451 0 100 5.05488 100 11.2904v77.4197c0 6.2355-5.0549 11.2909-11.2904 11.2909s-11.2904-5.0554-11.2904-11.2909V11.2904C77.4192 5.05488 82.4741 0 88.7096 0z"
-        fill="#fff"
-      />
+    <g clipPath="url(#level-icon__clip)" fillRule="evenodd" clipRule="evenodd">
       <path
         d="M11.2904 58.0649c6.2355 0 11.2904 5.0549 11.2904 11.2904v19.3549c0 6.2355-5.0549 11.2908-11.2904 11.2908C5.05488 100.001 0 94.9457 0 88.7102V69.3553c0-6.2355 5.05488-11.2904 11.2904-11.2904z"
-        fill="#2611A2"
+        fill="var(--purpleD1)"
+      />
+      <path
+        d="M50 29.0324c6.2355 0 11.2904 5.0549 11.2904 11.2904v48.3874c0 6.2355-5.0549 11.2908-11.2904 11.2908s-11.2904-5.0553-11.2904-11.2908V40.3228c0-6.2355 5.0549-11.2904 11.2904-11.2904z"
+        fill={level === 'beginner' ? 'white' : 'var(--purpleD1)'}
+      />
+      <path
+        d="M88.7096 0C94.9451 0 100 5.05488 100 11.2904v77.4197c0 6.2355-5.0549 11.2909-11.2904 11.2909s-11.2904-5.0554-11.2904-11.2909V11.2904C77.4192 5.05488 82.4741 0 88.7096 0z"
+        fill={level === 'advanced' ? 'var(--purpleD1)' : 'white'}
       />
     </g>
     <defs>
@@ -45,9 +45,9 @@ export const LevelIcon: React.SFC<{}> = () => (
 )
 
 export const skillLevelIcon = {
-  beginner: () => <LevelIcon />,
-  intermediate: () => <LevelIcon />,
-  advanced: () => <LevelIcon />,
+  beginner: () => <LevelIcon level="beginner" />,
+  intermediate: () => <LevelIcon level="intermediate" />,
+  advanced: () => <LevelIcon level="advanced" />,
   allLevels: () => <WinkEmoji />
 }
 

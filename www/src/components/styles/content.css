@@ -1,14 +1,13 @@
 .content__wrapper {
   display: flex;
   flex-wrap: wrap;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 350px));
-  margin: 0 -20px;
+  margin: 0 calc(var(--multiplier) * -6);
 }
 
 .content__card {
   flex: 1 0 275px;
   max-width: 335px;
-  margin: 20px;
+  margin: calc(var(--multiplier) * 6);
   background: white;
   box-shadow: var(--shadow3);
   border-radius: calc(var(--multiplier) * 10);
@@ -53,6 +52,7 @@
   & a {
     color: inherit;
     text-decoration: none;
+    font-weight: 400;
   }
 }
 

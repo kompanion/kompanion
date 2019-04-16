@@ -9,6 +9,7 @@
 - Form submission
   - The Lambda function for automatic submission is almost there...
   - But it's still very prone to bugs, so in the meantime, just render a `<pre>` with the JSON file that people need to add in GH, and direct them to the [corresponding link](https://github.com/kompanion/kommunity-content/new/master/content)
+  - Submission go back
 - Header
 - **more** (_and more relavant_) **content**
 - modal with more recommendations
@@ -25,3 +26,5 @@
 - masonry layout for the content
 - filter for the topic when clicking on its tag inside a content card
 - 404
+- Accesible sidebars
+- better structuring of CSS

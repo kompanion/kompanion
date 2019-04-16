@@ -1,10 +1,12 @@
 import { IContentCard } from '@kompanion/types'
+import { textToParagraphs } from '@kompanion/utils'
 import { graphql } from 'gatsby'
 import * as React from 'react'
 import Helmet from 'react-helmet'
 
+import { Favicon } from '../components/Favicon'
+import Header from '../components/Header'
 import Directory from '../containers/Directory/Directory'
-import { textToParagraphs } from '../../../utilities/utils/lib'
 
 export interface IIndexPageProps {
   data: {
@@ -16,19 +18,19 @@ export interface IIndexPageProps {
   }
 }
 
-const firstParagraph = `Learning Gatsby and React can be fun and more collaborative. Count on valuable, community-curated content as your kompanion.\n__Why count on old fashioned link aggregators when you have recommendations by your fellow developers?__ 😉`
+const firstParagraph = `Learning Gatsby, React and the JAMstack can be fun and more collaborative. Count on valuable, community-curated content as your kompanion.\n__Why count on old fashioned link aggregators when you have recommendations by your fellow developers?__ 😉`
 
 export const IndexPage: React.SFC<IIndexPageProps> = ({ data }) => {
   return (
     <>
       <Helmet>
-        <title>
-          Kompanion kommunity - learning Gatsby can be fun and effective
-        </title>
+        <title>kommunity - learning Gatsby can be fun and effective</title>
       </Helmet>
+      <Header includeFilter={true} />
       <Directory content={data.content.edges}>
-        <h1>kommunity</h1>
-        {textToParagraphs(firstParagraph)}
+        <div style={{ maxWidth: '600px', fontSize: '.9rem' }}>
+          {textToParagraphs(firstParagraph)}
+        </div>
       </Directory>
     </>
   )

@@ -11,10 +11,11 @@ import {
 import ContentCard from '../../components/ContentCard'
 import { formatIcons } from '../../components/formatIcons'
 
+import LevelCheckbox from '../../components/LevelCheckbox'
 import '../../components/styles/pill-checkbox.css'
 import './directory.css'
-import { SkillLevelIndicator } from '../../components/levelIcons'
-import LevelCheckbox from '../../components/LevelCheckbox'
+import FilterSidebar from './FilterSidebar'
+import EmptySearch from './EmptySearch'
 
 export interface IDirectoryProps {
   content: Array<{
@@ -40,6 +41,7 @@ export const Directory: React.SFC<IDirectoryProps> = ({
   children
 }) => {
   const [filteredContent, setContent] = React.useState(content)
+
   const [filterState, { checkbox, label }] = useFormState<IFilterFields>(
     initialState,
     {
@@ -59,7 +61,6 @@ export const Directory: React.SFC<IDirectoryProps> = ({
         node.skillLevel !== 'allLevels' &&
         skillLevels.indexOf(node.skillLevel) < 0
       ) {
-        console.log('skill level', node)
         return false
       }
       if (
@@ -67,7 +68,6 @@ export const Directory: React.SFC<IDirectoryProps> = ({
         formats.length > 0 &&
         formats.indexOf(node.format) < 0
       ) {
-        console.log('formats', node)
         return false
       }
       if (
@@ -75,66 +75,29 @@ export const Directory: React.SFC<IDirectoryProps> = ({
         topics.length > 0 &&
         topics.indexOf(node.topic) < 0
       ) {
-        console.log('topics', node)
         return false
       }
       return true
     })
-    console.log({ new: newContent.length, content: content.length, formats })
     setContent(newContent)
   }
 
   return (
-    <div className="directory__wrapper">
-      <aside className="directory__sidebar">
-        <fieldset aria-title="Define the topics you want to filter by">
-          <h2>Topics</h2>
-          <section className="pill-checkbox__wrapper">
-            {contentTopics.map(t => (
-              <div className="pill-checkbox text_center" key={t}>
-                <input {...checkbox('topics', t)} />
-                <label {...label('topics', t)}>{t}</label>
-              </div>
-            ))}
-          </section>
-        </fieldset>
-        <fieldset aria-title="Which formats you want to filter by">
-          <h2>Formats</h2>
-          <section className="pill-checkbox__wrapper">
-            {contentFormats.map(f => (
-              <div className="pill-checkbox pill-checkbox_has-icon" key={f}>
-                <input {...checkbox('formats', f)} />
-                <label {...label('formats', f)}>
-                  {capitalizeFirstLetter(f)} {formatIcons[f]({})}
-                </label>
-              </div>
-            ))}
-          </section>
-        </fieldset>
-        <fieldset aria-title="Filter content by skill levels">
-          <h2>Skill levels</h2>
-          {contentLevels
-            .filter(l => l !== 'allLevels')
-            .map(l => (
-              <LevelCheckbox
-                key={l}
-                level={l}
-                label={label}
-                checkbox={checkbox}
-              />
-            ))}
-        </fieldset>
-      </aside>
-      {/* Main -> contains props.children */}
+    <>
+      <FilterSidebar label={label} checkbox={checkbox} />
       <main className="directory__main">
         {children}
         <section className="content__wrapper">
-          {filteredContent.map(({ node }) => (
-            <ContentCard key={node.url} {...node} />
-          ))}
+          {filteredContent.length > 0 ? (
+            filteredContent.map(({ node }) => (
+              <ContentCard key={node.url} {...node} />
+            ))
+          ) : (
+            <EmptySearch />
+          )}
         </section>
       </main>
-    </div>
+    </>
   )
 }
 

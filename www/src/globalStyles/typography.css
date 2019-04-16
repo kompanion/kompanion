@@ -13,8 +13,13 @@
   line-height: var(--lineHeight);
 }
 
-p, button {
+* {
+  font-family: inherit;
+}
+
+p {
   font-size: inherit;
+  margin: 1.75em 0;
 }
 
 :--heading {
@@ -33,6 +38,10 @@ h2 {
   font-size: calc(var(--multiplier) * 8);
 }
 
+h3 {
+  font-size: calc(var(--multiplier) * 8);
+}
+
 @media (--tabletUp) {
   :root {
     font-size: calc(var(--multiplier) * 9);
@@ -43,6 +52,10 @@ h2 {
   }
   
   h2 {
+    font-size: calc(var(--multiplier) * 10);
+  }
+  
+  h3 {
     font-size: calc(var(--multiplier) * 10);
   }
 }

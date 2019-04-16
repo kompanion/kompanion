@@ -21,16 +21,32 @@
     height: 0;
     opacity: 0;
     &:checked ~ label > .level-checkbox__indicator {
-      background: var(--purpleL1);
+      background: var(--successL1);
+      box-shadow: none;
+      & svg {
+        width: 60%;
+        opacity: 1;
+      }
     }
   }
 }
 
 .level-checkbox__indicator {
-  width: 1.5em;
-  height: 1.5em;
-  margin-right: .5em;
+  font-size: calc(var(--multiplier) * 10);
+  width: 1em;
+  height: 1em;
+  margin-right: .35em;
   background: var(--greyL3);
   box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px 0px 1px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    transition: var(--transition);
+  & svg {
+    fill: var(--successD1);
+    width: 0;
+    opacity: 0;
+    transition: var(--transition);
+  }
 }

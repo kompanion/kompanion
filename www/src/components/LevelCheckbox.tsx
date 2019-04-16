@@ -1,7 +1,9 @@
 import { TSkillLevels } from '@kompanion/types'
 import * as React from 'react'
 
+import { CheckIcon } from './generalIcons'
 import { SkillLevelIndicator } from './levelIcons'
+
 import './styles/level-checkbox.css'
 
 export interface ILevelCheckboxProps {
@@ -21,7 +23,9 @@ export const LevelCheckbox: React.SFC<ILevelCheckboxProps> = ({
     <div className="level-checkbox">
       <input {...checkbox('skillLevels', level)} />
       <label {...label('skillLevels', level)}>
-        <div aria-hidden={true} className="level-checkbox__indicator" />
+        <div aria-hidden={true} className="level-checkbox__indicator">
+          <CheckIcon />
+        </div>
         <SkillLevelIndicator level={level} />
       </label>
     </div>

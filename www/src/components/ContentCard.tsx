@@ -48,11 +48,7 @@ export const ContentCard: React.SFC<IContentCard> = ({
         {textToParagraphs(collaborator.comment)}
       </main>
       <address>
-        <a
-          className="content__author"
-          href={`https://github.com/${handle}`}
-          target="_blank"
-        >
+        <a className="content__author" href={`/users/${handle}`}>
           <img
             src={avatarUrl}
             alt={`Profile picture from ${name}`}

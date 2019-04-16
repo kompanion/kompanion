@@ -7,10 +7,10 @@
   & > label {
     border: .1em solid var(--purpleL1);
     border-radius: 10em;
-    padding: .25em .85em;
+    padding: .15em .85em;
     cursor: pointer;
     display: inline-block;
-    min-width: 3em;
+    min-width: 4em;
     transition: var(--transition);
     user-select: none;
   }
@@ -22,8 +22,9 @@
     height: 0;
     opacity: 0;
     &:checked ~ label {
-      color: white;
-      background: var(--purpleL1);
+      color: var(--purpleD2);
+      background: var(--purpleL3);
+      border-color: var(--purpleL3);
     }
   }
 }
